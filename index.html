@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Shower Presentation Engine</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen-16x10.css">
+	<style>
+		#cover {
+			background-color: white
+		}
+		#cover code {
+			margin:30px 0 0;
+			text-align:center;
+			font-size:70px;
+		}
+		.inactive{
+			color: #CCC;
+		}
+		pre {
+			font-size: 15px;
+		}
+		pre.big {
+			font-size: 25px;
+		}
+		code {
+			font-size: smaller;
+		}
+		pre code {
+			font-size: inherit;
+		}
+		.slide:after {
+			display: none;
+		}
+		.centered {
+			text-align: center;
+		}
+
+        div .code {
+            margin: -10%;
+        }
+	</style>
+</head>
+<body class="shower list">
+
+	<header class="caption">
+		<h1>kubernetes</h1>
+		<!--<p>Yours Truly, Famous Inc.</p>-->
+	</header>
+
+	<section class="slide shout" id="cover">
+		<h2>kubernetes</h2>
+		<style>
+			#cover h2 {
+				margin:100px 0 0;
+				/*color:#000;*/
+				text-align:center;
+				font-size:70px;
+                font-family: 'PT Mono',monospace;
+				}
+			#cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#cover p a {
+					color:#FFF;
+					}
+		</style>
+	</section>
+
+	<section class="slide">
+		<h2>План на сегодня</h2>
+		<ol>
+			<ul>Обновление образа</ul>
+			<ul>ReplicaSet</ul>
+			<ul>Services</ul>
+			<ul>ConfigMap, Secret</ul>
+			<ul>DaemonSet</ul>
+			<ul>Job, CronJob</ul>
+		</ol>
+    </section>
+
+    <section class="slide">
+        <h2>Сдали ДЗ</h2>
+        <ul class="next double">
+            <li>Владимир</li>
+            <li>Иван</li>
+            <li>Григорий</li>
+            <li>Дмитрий</li>
+            <li>Мария</li>
+            <li>Илья</li>
+            <li>Маргарита</li>
+            <li>Никита</li>
+            <li>Владислав</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/1.png">
+        </div>
+    </section>
+    
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/2.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/3.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/4.png">
+        </div>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>metadata:</code>
+            <code>  labels:</code>
+            <code>    run: uka</code>
+            <code>  name: uka</code>
+            <code>  namespace: default</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  template:</code>
+            <code>    ...</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        - "3000"</code>
+            <code>        image: ubuntu:14.04</code>
+            <code>        name: uka</code>
+		</pre>
+    </section>
+
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>metadata:</code>
+            <code>  labels:</code>
+            <code>    run: uka</code>
+            <code>  name: uka</code>
+            <code>  namespace: default</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  template:</code>
+            <code>    ...</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        - "3000"</code>
+            <code>        <mark>image: ubuntu:14.04</mark></code>
+            <code>        name: uka</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>metadata:</code>
+            <code>  labels:</code>
+            <code>    run: uka</code>
+            <code>  name: uka</code>
+            <code>  namespace: default</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  template:</code>
+            <code>    ...</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        - "3000"</code>
+            <code>        <mark>image: ubuntu:16.04</mark></code>
+            <code>        name: uka</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>metadata:</code>
+            <code>  labels:</code>
+            <code>    run: uka</code>
+            <code>  name: uka</code>
+            <code>  namespace: default</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  template:</code>
+            <code>    ...</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        <mark>- "3000"</mark></code>
+            <code>        image: ubuntu:16.04</code>
+            <code>        name: uka</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>metadata:</code>
+            <code>  labels:</code>
+            <code>    run: uka</code>
+            <code>  name: uka</code>
+            <code>  namespace: default</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  template:</code>
+            <code>    ...</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        <mark>- "1"</mark></code>
+            <code>        image: ubuntu:16.04</code>
+            <code>        name: uka</code>
+		</pre>
+    </section>
+
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/5.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/6.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/7.png">
+        </div>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>metadata:</code>
+            <code>  labels:</code>
+            <code>    run: uka</code>
+            <code>  name: uka</code>
+            <code>  namespace: default</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  template:</code>
+            <code>    ...</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        <mark>- "1"</mark></code>
+            <code>        image: ubuntu:16.04</code>
+            <code>        name: uka</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>metadata:</code>
+            <code>  labels:</code>
+            <code>    run: uka</code>
+            <code>  name: uka</code>
+            <code>  namespace: default</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  template:</code>
+            <code>    ...</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        <mark>- "3000"</mark></code>
+            <code>        image: ubuntu:16.04</code>
+            <code>        name: uka</code>
+		</pre>
+    </section>
+
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/8.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/9.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Работа с обновлениями</h2>
+        <div class="code">
+            <img src="pictures/10.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>История</h2>
+        <div class="code">
+            <img src="pictures/11.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>История</h2>
+        <div class="code">
+            <img src="pictures/12.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>История</h2>
+        <div class="code">
+            <img src="pictures/13.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>История</h2>
+        <div class="code">
+            <img src="pictures/14.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>История</h2>
+        <div class="code">
+            <img src="pictures/15.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>История</h2>
+        <div class="code">
+            <img src="pictures/16.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>История</h2>
+        <p>
+            <code class="next">kubectl create -f deploy.yaml --record</code><br>
+            <code class="next">kubectl rollout history deploy deployname</code><br>
+            <code class="next">kubectl rollout history deploy deployname --revision=n</code><br>
+            <code class="next">kubectl rollout undo deploy deployname</code><br>
+            <code class="next">kubectl rollout undo deploy deployname --to-revision=n</code><br>
+        </p>
+    </section>
+
+    <section class="slide">
+        <h2>Как улучшить update</h2>
+        <div class="code">
+            <img src="pictures/7.png">
+        </div>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>...</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  strategy:</code>
+            <code>    rollingUpdate:</code>
+            <code>      maxSurge: 1</code>
+            <code>      maxUnavailable: 1</code>
+            <code>    type: RollingUpdate</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        - "3000"</code>
+            <code>        image: ubuntu:14.04</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>...</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code><mark>  strategy:</mark></code>
+            <code><mark>    rollingUpdate:</mark></code>
+            <code><mark>      maxSurge: 1</mark></code>
+            <code><mark>      maxUnavailable: 1</mark></code>
+            <code><mark>    type: RollingUpdate</mark></code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        - "3000"</code>
+            <code>        image: ubuntu:14.04</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>...</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  strategy:</code>
+            <code>    rollingUpdate:</code>
+            <code><mark>      maxSurge: 1</mark></code>
+            <code>      maxUnavailable: 1</code>
+            <code>    type: RollingUpdate</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        - "3000"</code>
+            <code>        image: ubuntu:14.04</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>...</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  strategy:</code>
+            <code>    rollingUpdate:</code>
+            <code><mark>      maxSurge: 5</mark></code>
+            <code>      maxUnavailable: 1</code>
+            <code>    type: RollingUpdate</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        - "3000"</code>
+            <code>        image: ubuntu:14.04</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>...</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  strategy:</code>
+            <code>    rollingUpdate:</code>
+            <code>      maxSurge: 5</code>
+            <code>      maxUnavailable: 1</code>
+            <code>    type: RollingUpdate</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        - "3000"</code>
+            <code>        image: ubuntu:14.04</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>...</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code><mark>  minReadySeconds: 10</mark></code>
+            <code>  strategy:</code>
+            <code>    rollingUpdate:</code>
+            <code>      maxSurge: 5</code>
+            <code>      maxUnavailable: 1</code>
+            <code>    type: RollingUpdate</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code>        - "3000"</code>
+            <code>        image: ubuntu:14.04</code>
+		</pre>
+    </section>
+
+    <section class="slide" style="padding-top: 5%">
+        <pre>
+            <code>apiVersion: extensions/v1beta1</code>
+            <code>kind: Deployment</code>
+            <code>...</code>
+            <code>spec:</code>
+            <code>  replicas: 5</code>
+            <code>  minReadySeconds: 10</code>
+            <code>  strategy:</code>
+            <code>    rollingUpdate:</code>
+            <code>      maxSurge: 5</code>
+            <code>      maxUnavailable: 1</code>
+            <code>    type: RollingUpdate</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - command:</code>
+            <code>        - sleep</code>
+            <code><mark>        - "1"</mark></code>
+            <code>        image: ubuntu:14.04</code>
+		</pre>
+    </section>
+
+    <section class="slide">
+        <h2>Как улучшить update</h2>
+        <div class="code">
+            <img src="pictures/17.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Label и Selector</h2>
+        <div class="code">
+            <img width="90%" src="pictures/31.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Label и Selector</h2>
+        <div class="code">
+            <img width="90%" src="pictures/32.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Label и Selector</h2>
+        <div class="code">
+            <img width="90%" src="pictures/33.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Label и Selector</h2>
+        <div class="code">
+            <img width="90%" src="pictures/34.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Label и Selector</h2>
+        <div class="code">
+            <img width="90%" src="pictures/35.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Label и Selector</h2>
+        <div class="code">
+            <img width="90%" src="pictures/36.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Label и Selector</h2>
+        <div class="code">
+            <img width="90%" src="pictures/37.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img src="pictures/19.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img src="pictures/20.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img src="pictures/21.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img src="pictures/20.png">
+        </div>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2 style="margin-bottom: 0">Как происходит обновление</h2>
+        <code>kubectl get deploy uka -o yaml</code>
+        <p></p>
+        <pre>
+            <code>kind: Deployment</code>
+            <code>metadata:</code>
+            <code>  annotations:</code>
+            <code>    deployment.kubernetes.io/revision: "2"</code>
+            <code>  labels:</code>
+            <code>    run: uka</code>
+            <code>  name: uka</code>
+            <code>spec:</code>
+            <code>  replicas: 3</code>
+            <code>  selector:</code>
+            <code>    matchLabels:</code>
+            <code>      run: uka</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2 style="margin-bottom: 0">Как происходит обновление</h2>
+        <code>kubectl get deploy uka -o yaml</code>
+        <p></p>
+        <pre><code>kind: Deployment</code>
+            <code>metadata:</code>
+            <code>  annotations:</code>
+            <code><mark>    deployment.kubernetes.io/revision: "2"</mark></code>
+            <code>  labels:</code>
+            <code><mark>    run: uka</mark></code>
+            <code>  name: uka</code>
+            <code>spec:</code>
+            <code>  replicas: 3</code>
+            <code>  selector:</code>
+            <code>    matchLabels:</code>
+            <code><mark>      run: uka</mark></code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2 style="margin-bottom: 0">Как происходит обновление</h2>
+        <code>kubectl get replicaset uka-87987646f -o yaml</code>
+        <p></p>
+        <pre>
+            <code>kind: ReplicaSet</code>
+            <code>metadata:</code>
+            <code>  annotations:</code>
+            <code>    deployment.kubernetes.io/desired-replicas: "3"</code>
+            <code>    deployment.kubernetes.io/max-replicas: "4"</code>
+            <code>    deployment.kubernetes.io/revision: "2"</code>
+            <code>  labels:</code>
+            <code>    pod-template-hash: "435432029"</code>
+            <code>    run: uka</code>
+            <code>  name: uka-87987646f</code>
+            <code>spec:</code>
+            <code>  replicas: 3</code>
+            <code>  selector:</code>
+            <code>    matchLabels:</code>
+            <code>      run: uka</code>
+            <code>      pod-template-hash: "435432029"</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2 style="margin-bottom: 0">Как происходит обновление</h2>
+        <code>kubectl get replicaset uka-87987646f -o yaml</code>
+        <p></p>
+        <pre>
+            <code>kind: ReplicaSet</code>
+            <code>metadata:</code>
+            <code>  annotations:</code>
+            <code><mark>    deployment.kubernetes.io/desired-replicas: "3"</mark></code>
+            <code><mark>    deployment.kubernetes.io/max-replicas: "4"</mark></code>
+            <code><mark>    deployment.kubernetes.io/revision: "2"</mark></code>
+            <code>  labels:</code>
+            <code><mark>    pod-template-hash: "435432029"</mark></code>
+            <code><mark>    run: uka</mark></code>
+            <code>  name: uka-87987646f</code>
+            <code>spec:</code>
+            <code>  replicas: 3</code>
+            <code>  selector:</code>
+            <code>    matchLabels:</code>
+            <code><mark>      run: uka</mark></code>
+            <code><mark>      pod-template-hash: "435432029"</mark></code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2 style="margin-bottom: 0">Как происходит обновление</h2>
+        <code>kubectl get pods uka-87987646f-2r4cc -o yaml</code>
+        <p></p>
+        <pre>
+            <code>kind: Pod</code>
+            <code>metadata:</code>
+            <code>  labels:</code>
+            <code>    pod-template-hash: "435432029"</code>
+            <code>    run: uka</code>
+            <code>  name: uka-87987646f-2r4cc</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2 style="margin-bottom: 0">Как происходит обновление</h2>
+        <code>kubectl get pods uka-87987646f-2r4cc -o yaml</code>
+        <p></p>
+        <pre>
+            <code>kind: Pod</code>
+            <code>metadata:</code>
+            <code>  labels:</code>
+            <code><mark>    pod-template-hash: "435432029"</mark></code>
+            <code><mark>    run: uka</mark></code>
+            <code>  name: uka-87987646f-2r4cc</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/41.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/42.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/43.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/44.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/45.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/46.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/47.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/48.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/49.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/50.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/51.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/52.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/53.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как происходит обновление</h2>
+        <div class="code">
+            <img width="90%" src="pictures/54.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Service</h2>
+        <ul>
+            <li class="next">Deploy создает динамически Pod'ы => IP постоянно меняется</li>
+            <li class="next">Service - абстракция, объединяющая Pod'ы <span class="next">(дает общий ip)</span></li>
+            <li class="next">Service раскидывает соединения между Pods <span class="next">(Balancer)</span></li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Пример внешнего SVC</h2>
+        <p><code class="next">kubectl run nginx --image=nginx --replicas=3</code><br>
+            <code class="next">kubectl expose deploy nginx --port 80 --type NodePort</code><br>
+            <code class="next">kubectl get svc</code></p>
+        <img class="next" width="95%" src="pictures/55.png">
+        <code class="next">curl 88.99.247.54:30540</code></p>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>Как работает</h2>
+        <img src="pictures/60.svg">
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>Как работает</h2>
+        <img src="pictures/61.svg">
+    </section>
+
+    <section class="slide">
+        <h2>Типы Service</h2>
+        <ul>
+            <li class="next">ClusterIP <span class="next">(внутренний)</span></li>
+            <li class="next">NodePort <span class="next">(открывает случайный port на всех нодах)</span></li>
+            <li class="next">ExternalName <span class="next">(можно указать IP)</span></li>
+            <li class="next">LoadBalancer <span class="next">(внешний LoadBalancer: AWS, GCP, Azure, OpenStack)</span></li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>ClusterIP Service</h2>
+        <ul>
+            <li class="next">Нужен для взаимодействия между приложениями</li>
+            <li class="next">Название SVC является доменом для других контейнеров</li>
+        </ul>
+        <p class="next">*Из контейнера можно обращаться так:<br>
+        <code>curl nginx:80</code></p>
+    </section>
+
+    <section class="slide">
+        <pre>
+            <code>apiVersion: v1</code>
+            <code>kind: Service</code>
+            <code>metadata:</code>
+            <code>  name: postgres</code>
+            <code>  namespace: default</code>
+            <code>  labels:</code>
+            <code>    app: postgres</code>
+            <code>    env: production</code>
+            <code>spec:</code>
+            <code>  ports:</code>
+            <code>  - name: postgres</code>
+            <code>    port: 5432</code>
+            <code>    targetPort: 5432</code>
+            <code>    protocol: TCP</code>
+            <code>  selector:</code>
+            <code>    app: postgres</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <pre>
+            <code>apiVersion: v1</code>
+            <code>kind: Service</code>
+            <code>metadata:</code>
+            <code>  name: postgres</code>
+            <code>  namespace: default</code>
+            <code>  labels:</code>
+            <code>    app: postgres</code>
+            <code>    env: production</code>
+            <code>spec:</code>
+            <code>  ports:</code>
+            <code><mark>  - name: postgres</mark></code>
+            <code><mark>    port: 5432</mark></code>
+            <code><mark>    targetPort: 5432</mark></code>
+            <code><mark>    protocol: TCP</mark></code>
+            <code>  selector:</code>
+            <code>    app: postgres</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>DNS</h2>
+        <ul>
+            <li class="next">В кластере есть внутренний dns, который следит за svc</li>
+            <li class="next">Из любого контейнера можно обращаться внутри одного ns по названию сервиса</li>
+            <li class="next">Из любого контейнера можно обращаться между ns по: <br>my-svc.my-namespace.svc.cluster.local</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>ConfigMap</h2>
+        <ul>
+            <li class="next">Любой текстовой файл с конфигурацией</li>
+            <li class="next">Можно хранить в самом кластере и менять не пересобирая контейнер</li>
+            <li class="next">В контейнере монтируются в виде файла или переменной окружения</li>
+            <p class="next">
+                <code>kubectl create configmap &lt;cm name&gt; &lt;file name&gt;</code>
+            </p>
+        </ul>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>YAML ConfigMap</h2>
+        <pre>
+            <code>apiVersion: v1</code>
+            <code>kind: ConfigMap</code>
+            <code>metadata:</code>
+            <code>  name: nginx-conf</code>
+            <code>  namespace: default</code>
+            <code>data:</code>
+            <code>  nginx.conf: |</code>
+            <code>    worker_processes 1;</code>
+            <code>    events {</code>
+            <code>      worker_connections 1024;</code>
+            <code>    }</code>
+            <code>    ...</code>
+            <code>  example: |</code>
+            <code>    ...</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>YAML ConfigMap</h2>
+        <pre>
+            <code><mark>apiVersion: v1</mark></code>
+            <code><mark>kind: ConfigMap</mark></code>
+            <code><mark>metadata:</mark></code>
+            <code><mark>  name: nginx-conf</mark></code>
+            <code><mark>  namespace: default</mark></code>
+            <code>data:</code>
+            <code>  nginx.conf: |</code>
+            <code>    worker_processes 1;</code>
+            <code>    events {</code>
+            <code>      worker_connections 1024;</code>
+            <code>    }</code>
+            <code>    ...</code>
+            <code>  example: |</code>
+            <code>    ...</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>YAML ConfigMap</h2>
+        <pre>
+            <code>apiVersion: v1</code>
+            <code>kind: ConfigMap</code>
+            <code>metadata:</code>
+            <code>  name: nginx-conf</code>
+            <code>  namespace: default</code>
+            <code>data:</code>
+            <code>  nginx.conf: |</code>
+            <code><mark>    worker_processes 1;</mark></code>
+            <code><mark>    events {</mark></code>
+            <code><mark>      worker_connections 1024;</mark></code>
+            <code><mark>    }</mark></code>
+            <code><mark>    ...</mark></code>
+            <code>  example: |</code>
+            <code>    ...</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>YAML ConfigMap</h2>
+        <pre>
+            <code>apiVersion: v1</code>
+            <code>kind: ConfigMap</code>
+            <code>metadata:</code>
+            <code>  name: nginx-cm</code>
+            <code>  namespace: default</code>
+            <code>data:</code>
+            <code>  nginx.conf: |</code>
+            <code><mark>____</mark>worker_processes 1;</code>
+            <code><mark>____</mark>events {</code>
+            <code><mark>____</mark>  worker_connections 1024;</code>
+            <code><mark>____</mark>}</code>
+            <code><mark>____</mark>...</code>
+            <code>  example: |</code>
+            <code>    ...</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>YAML Deploy для использования CM</h2>
+        <pre>
+            <code>kind: Deployment</code>
+            <code>spec:</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>        volumeMounts:</code>
+            <code>        - mountPath: /etc/nginx/nginx.conf</code>
+            <code>          name: config</code>
+            <code>          subPath: nginx.conf</code>
+            <code>        ...</code>
+            <code>      volumes:</code>
+            <code>      - configMap:</code>
+            <code>          defaultMode: 420</code>
+            <code>          name: nginx-cm</code>
+            <code>        name: config</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>YAML Deploy для использования CM</h2>
+        <pre>
+            <code>kind: Deployment</code>
+            <code>spec:</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>        volumeMounts:</code>
+            <code>        - mountPath: /etc/nginx/nginx.conf</code>
+            <code>          name: config</code>
+            <code>          subPath: nginx.conf</code>
+            <code>        ...</code>
+            <code>      volumes:</code>
+            <code>      - configMap:</code>
+            <code>          defaultMode: 420</code>
+            <code><mark>          name: nginx-cm</mark></code>
+            <code>        name: config</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>YAML Deploy для использования CM</h2>
+        <pre>
+            <code>kind: Deployment</code>
+            <code>spec:</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>        volumeMounts:</code>
+            <code>        - mountPath: /etc/nginx/nginx.conf</code>
+            <code><mark>          name: config</mark></code>
+            <code>          subPath: nginx.conf</code>
+            <code>        ...</code>
+            <code>      volumes:</code>
+            <code>      - configMap:</code>
+            <code>          defaultMode: 420</code>
+            <code>          name: nginx-cm</code>
+            <code><mark>        name: config</mark></code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Secrets</h2>
+        <ul>
+            <li class="next">Для хранения конфиденциальной информации (login, password, token)</li>
+            <li class="next">Можно использовать аналогично ConfigMap (файл, переменная окружения)</li>
+            <li class="next">Используется для приватных репозиториев</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Secret для приватных репозиторев</h2>
+        <ul></ul>
+        <p><code>kubectl create secret docker-registry <b>regsecret</b> \<br>
+            --docker-username=&lt;your-name&gt; \<br>
+            --docker-password=&lt;your-pword&gt; \<br>
+            --docker-email=&lt;your-email&gt;</code></p>
+    </section>
+
+    <section class="slide">
+        <h2>Secret для приватных репозиторев</h2>
+        <ul></ul>
+        <p><code>kubectl create secret docker-registry <b>regsecret</b> \<br>
+            --docker-username=&lt;your-name&gt; \<br>
+            --docker-password=&lt;your-pword&gt; \<br>
+            --docker-email=&lt;your-email&gt; \<br>
+            --docker-server=&lt;your-registry-server&gt;</code></p>
+    </section>
+
+    <section class="slide">
+        <h2>Secret для приватных репозиторев</h2>
+        <ul></ul>
+        <p><code>kubectl get secret</code></p>
+        <img src="pictures/56.png">
+    </section>
+
+    <section class="slide">
+        <h2>Secret для приватных репозиторев</h2>
+        <pre>
+            <code>kind: Deployment</code>
+            <code>...</code>
+            <code>spec:</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - name: container1</code>
+            <code>        image: private-image</code>
+            <code>      imagePullSecrets:</code>
+            <code>      - name: regsecret</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Secret для приватных репозиторев</h2>
+        <pre>
+            <code>kind: Deployment</code>
+            <code>...</code>
+            <code>spec:</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - name: container1</code>
+            <code>        image: private-image</code>
+            <code><mark>      imagePullSecrets:</mark></code>
+            <code><mark>      - name: regsecret</mark></code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>DaemonSet</h2>
+        <ul>
+            <li class="next">Запускает pod'ы одновременно на всех машинах</li>
+            <li class="next">Удобен для запуска приложений, которые должны работать везде (fluentd, logstash, glusterd)</li>
+        </ul>
+        <img class="next" src="pictures/57.png"  width="97%">
+    </section>
+
+    <section class="slide">
+        <h2>DaemonSet</h2>
+        <pre class="next">
+            <code>apiVersion: apps/v1</code>
+            <code>kind: DaemonSet</code>
+            <code>metadata:</code>
+            <code>  name: fluentd-elasticsearch</code>
+            <code>  namespace: kube-system</code>
+            <code>  labels:</code>
+            <code>    app: logs</code>
+            <code>spec:</code>
+            <code><del>  replicas: n</del></code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>        ...</code></pre>
+    </section>
+
+    <section class="slide">
+        <h2>Job и CronJob</h2>
+        <ul>
+            <li class="next">Перезапускает pod до тех пор, пока он не завершится удачно</li>
+            <li class="next">Job чаще всего используют для выполнения миграций</li>
+            <li class="next">CronJob чаще всего используют для переодического создания бекапов</li>
+        </ul>
+        <p class="next">
+        <code>kubectl get job</code><br>
+        <code>kubectl describe job &lt;name&gt;</code>
+        </p>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>Job</h2>
+        <pre class="next">
+            <code>apiVersion: batch/v1</code>
+            <code>kind: Job</code>
+            <code>metadata:</code>
+            <code>  name: pi-with-timeout</code>
+            <code>spec:</code>
+            <code>  backoffLimit: 5</code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - name: pi</code>
+            <code>        image: perl</code>
+            <code>        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]</code>
+            <code>      restartPolicy: Never</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>Job</h2>
+        <pre>
+            <code>apiVersion: batch/v1</code>
+            <code>kind: Job</code>
+            <code>metadata:</code>
+            <code>  name: pi-with-timeout</code>
+            <code>spec:</code>
+            <code><mark>  backoffLimit: 5</mark></code>
+            <code>  template:</code>
+            <code>    spec:</code>
+            <code>      containers:</code>
+            <code>      - name: pi</code>
+            <code>        image: perl</code>
+            <code>        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]</code>
+            <code>      restartPolicy: Never</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>CronJob</h2>
+        <pre class="next">
+            <code>apiVersion: batch/v1beta1</code>
+            <code>kind: CronJob</code>
+            <code>metadata:</code>
+            <code>  name: hello</code>
+            <code>spec:</code>
+            <code>  schedule: "*/1 * * * *"</code>
+            <code>  jobTemplate:</code>
+            <code>    spec:</code>
+            <code>      template:</code>
+            <code>        spec:</code>
+            <code>          containers:</code>
+            <code>          - name: hello</code>
+            <code>            image: busybox</code>
+            <code>            args:</code>
+            <code>            - /bin/sh</code>
+            <code>            - -c</code>
+            <code>            - date; echo Hello from the Kubernetes cluster</code>
+            <code>          restartPolicy: OnFailure</code>
+        </pre>
+    </section>
+
+    <section class="slide" style="padding-top: 0">
+        <h2>CronJob</h2>
+        <pre>
+            <code>apiVersion: batch/v1beta1</code>
+            <code>kind: CronJob</code>
+            <code>metadata:</code>
+            <code>  name: hello</code>
+            <code>spec:</code>
+            <code><mark>  schedule: "*/1 * * * *"</mark></code>
+            <code>  jobTemplate:</code>
+            <code>    spec:</code>
+            <code>      template:</code>
+            <code>        spec:</code>
+            <code>          containers:</code>
+            <code>          - name: hello</code>
+            <code>            image: busybox</code>
+            <code>            args:</code>
+            <code>            - /bin/sh</code>
+            <code>            - -c</code>
+            <code>            - date; echo Hello from the Kubernetes cluster</code>
+            <code>          restartPolicy: OnFailure</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Crontab</h2>
+        <pre>
+            <code># ┌───────────── minute (0 - 59)</code>
+            <code># │ ┌───────────── hour (0 - 23)</code>
+            <code># │ │ ┌───────────── day of month (1 - 31)</code>
+            <code># │ │ │ ┌───────────── month (1 - 12)</code>
+            <code># │ │ │ │ ┌───────────── day of week (0 - 6) (Sunday to Saturday;</code>
+            <code># │ │ │ │ │                                       7 is also Sunday on some systems)</code>
+            <code># │ │ │ │ │</code>
+            <code># │ │ │ │ │</code>
+            <code># * * * * *  command to execute</code>
+        </pre>
+        <a class="next" href="https://en.wikipedia.org/wiki/Cron">https://en.wikipedia.org/wiki/Cron</a>
+    </section>
+
+    <section class="slide">
+        <h2>+kubectl</h2>
+        <ul>
+            <li class="next">kubectl log &lt;podname&gt;</li>
+            <li class="next">kubectl log &lt;podname&gt; -f</li>
+            <li class="next">kubectl exec -ti &lt;podname&gt; /bin/bash</li>
+            <li class="next">kubectl exec -ti &lt;podname&gt; -c &lt;container&gt; /bin/bash</li>
+            <li class="next">kubectl top</li>
+            <li class="next">kubectl cp</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>ДЗ</h2>
+        <ul>
+            <li>Поднять MySQL</li>
+            <li>Поднять Wordpress в 1 реплике и связать с MySQL</li>
+            <li>Выкинуть Wordpress через NodePort</li>
+            <li>Масштабировать до 2 реплик, сохранив историю</li>
+            <li>*использовать volume - желательно (домашняя директория) <br>
+                <a href="https://kubernetes.io/docs/concepts/storage/volumes/#hostpath">https://kubernetes.io/docs/concepts/storage/volumes/#hostpath</a></li>
+            <li>*придется использовать env или configMap</li>
+            <li>см. примеры тут: <a href="https://kubernetes.io/docs/user-guide/walkthrough/">https://kubernetes.io/docs/user-guide/walkthrough/</a></li>
+        </ul>
+    </section>
+
+    <footer class="badge">
+        <p></p>
+    </footer>
+
+    <div class="progress"></div>
+
+	<script src="shower/shower.min.js"></script>
+	<!-- Copyright © 2017 Yours Truly, Famous Inc. -->
+
+</body>
+</html>
